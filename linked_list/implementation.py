@@ -66,20 +66,26 @@ class LinkedList(AbstractLinkedList):
         return self
 
     def __eq__(self, other):
+        if self is None and other is None:
+            return True
+            
+        if (self is None and other is not None) or (self is not None and other is None):
+            return False
+            
+        if (str(self) != str(other)):
+            return False
+            
         self_val = self.start
         other_val = other.start
         
-        while True:
-            if not self_val and not other_val:
-                return True
-            if not bool(self_val) or not bool(other_val):
+        while (self_val != self.end and other_val != other.end):
+            if bool(self_val.elem) != bool(other_val.elem):
                 return False
-            if self_val.elem != other_val.elem:
-                return False
-            
+                
             self_val = self_val.next
             other_val = other_val.next
-
+        return True
+        
     def __ne__(self, other):
         return not self.__eq__(other)
 
