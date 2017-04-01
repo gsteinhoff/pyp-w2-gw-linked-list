@@ -6,7 +6,7 @@ class Node(object):
 
     def __init__(self, elem, next=None):
         self.elem = elem
-        self.next= next
+        self.next = next
 
     def __str__(self):
         if self.next:
@@ -14,18 +14,15 @@ class Node(object):
         else:
             return "Node({}) > /".format(str(self.elem))
         
-    def __eq__(self, obj):
-        if isinstance(obj,Node):
-            return self.elem == obj.elem and self.next == obj.next
-        else: 
+    def __eq__(self, other):
+        if isinstance(other, Node):
+            return self.elem == other.elem and self.next == other.next
+        else:
             return False
-            
-    def __ne__(self, obj):
-        if isinstance(obj,Node):
-            return self.elem != obj.elem or self.next != obj.next
-        else: 
-            return False
+        
+    def __ne__(self, other):
+        return not self.__eq__(other)
             
     def __repr__(self):
-        pass
-        # return 'Node({})'.format(self.elem)
+        return str(self.elem)
+
